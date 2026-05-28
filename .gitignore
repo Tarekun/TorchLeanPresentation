@@ -1,3 +1,11 @@
 lean-mlp/.lake
 pytorch/.venv
 __pycache__
+
+# presentation build artifacts
+presentation/**
+!presentation/*.tex
+!presentation/main.pdf
+!presentation/imgs/
+!presentation/imgs/**
+!presentation/make_slides.sh
