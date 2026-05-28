@@ -5,8 +5,11 @@ from data import generate_batch
 from mlp import Mlp
 
 
+learning_rate = 0.5
+
+
 def train(model: Mlp, train_steps: int, batch_size: int, device: torch.device = torch.device("cpu")):
-    optimizer = optim.Adam(model.parameters(), lr=1e-3)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     loss_fn = nn.MSELoss()
 
     for step in range(train_steps):
