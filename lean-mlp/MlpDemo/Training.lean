@@ -4,7 +4,9 @@ import MlpDemo.Data
 open NN.API
 
 -- ── Hyperparameters ────────────────────────────────────────────────
-def nSteps       : Nat   := 1
+def nSteps       : Nat   := 100
+def batchSize    : Nat   := 32
+def testSize     : Nat   := 200
 def learningRate : Float := 0.5
 -- ───────────────────────────────────────────────────────────────────
 
@@ -15,8 +17,8 @@ variable {α : Type} [Semantics.Scalar α] [DecidableEq Spec.Shape] [ToString α
 def trainModel (task : train.Task σ τ) (runner : train.Runner α task) : IO Unit := do
   let _ ← train.fitDataset (task := task) runner
     (train.steps nSteps (optimizer := optim.adam learningRate) (logEvery := 25))
-    generateData
+    (generateData batchSize)
 
 def evaluateModel (task : train.Task σ τ) (runner : train.Runner α task) : IO Unit := do
   train.evalMode (task := task) runner
-  train.Report.reportMeanLoss (task := task) runner generateData "eval"
+  train.Report.reportMeanLoss (task := task) runner (generateData testSize) "eval"

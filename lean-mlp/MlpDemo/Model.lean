@@ -35,7 +35,7 @@ abbrev τ : Spec.Shape := NN.Tensor.Shape.Vec outDim
 def mkModel : nn.M (nn.Sequential σ τ) :=
   nn.sequential![
     nn.linear  inDim  30      Spec.Shape.scalar,
-    -- nn.linear  inDim  25      Spec.Shape.scalar,
+    -- nn.linear  inDim  29      Spec.Shape.scalar,
     nn.relu,
     nn.linear  30     outDim  Spec.Shape.scalar
   ]
