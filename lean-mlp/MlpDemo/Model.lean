@@ -34,8 +34,8 @@ abbrev τ : Spec.Shape := NN.Tensor.Shape.Vec outDim
 -- MLP with 1 hidden layer of 30 neurons that uses ReLU activation function
 def mkModel : nn.M (nn.Sequential σ τ) :=
   nn.sequential![
-    nn.linear inDim   30      (pfx := Spec.Shape.scalar),
-    -- nn.linear inDim   26      (pfx := Spec.Shape.scalar),
+    nn.linear  inDim  30      Spec.Shape.scalar,
+    -- nn.linear  inDim  25      Spec.Shape.scalar,
     nn.relu,
-    nn.linear 30      outDim  (pfx := Spec.Shape.scalar)
+    nn.linear  30     outDim  Spec.Shape.scalar
   ]
